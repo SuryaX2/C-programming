@@ -2,13 +2,16 @@
 int prime(int n)
 {
     int f = 1;
-    if (n % 2 == 0)
+    for (i = 2; i < n; i++)
     {
-        f = 0;
-        return f;
+        if (n % 2 == 0)
+        {
+            f = 0;
+            return f;
+        }
+        else
+            return f;
     }
-    else
-        return f;
 }
 int main()
 {
