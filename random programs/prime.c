@@ -8,16 +8,14 @@ int prime(int n){
     else
         return f;
 }
-int main()
-{
+int main(){
     int n;
     printf("\nEnter Range : ");
     scanf("%d", &n);
-    for (int i = 1; i < n;i++){
+    for (int i = 1; i <= n;i++){
         if (prime(i)){
-            printf("%d ", n);
+            printf("%d ", i);
         }
     }
-
     return 0;
 }
