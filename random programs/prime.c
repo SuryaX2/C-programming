@@ -11,7 +11,7 @@ int prime(int n){
 int main()
 {
     int n;
-    printf("\nEnter Number : ");
+    printf("\nEnter Range : ");
     scanf("%d", &n);
     for (int i = 1; i < n;i++){
         if (prime(i)){
