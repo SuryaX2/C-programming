@@ -10,8 +10,6 @@ void pattern1(int n)
 }
 void pattern2(int n)
 {
-    for (int i = 1; i <= n; i++)
-    {
         for (int i = 0; i < n; i++)
         {
             char c = 'A' + i;
@@ -22,7 +20,6 @@ void pattern2(int n)
             }
             printf("\n");
         }
-    }
 }
 int main()
 {
