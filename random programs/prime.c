@@ -1,11 +1,8 @@
 #include <stdio.h>
-int prime(int n)
-{
+int prime(int n){
     int f = 1;
-    for (int i = 2; i < n; i++)
-    {
-        if (n % i == 0)
-        {
+    for (int i = 2; i < n; i++){
+        if (n % i == 0){
             f = 0;
             return f;
         }
@@ -13,15 +10,12 @@ int prime(int n)
             return f;
     }
 }
-int main()
-{
+int main(){
     int n;
     printf("\nEnter Range : ");
     scanf("%d", &n);
-    for (int i = 1; i <= n; i++)
-    {
-        if (prime(i))
-        {
+    for (int i = 1; i <= n; i++){
+        if (prime(i)){
             printf("%d ", i);
         }
     }

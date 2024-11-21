@@ -2,10 +2,10 @@
 #include <stdio.h>
 int main()
 {
-	int n, i, f = 0;
+	int n, f = 0;
 	printf("Enter Number : ");
 	scanf("%d", &n);
-	for (i = 2; i < n; i++)
+	for (int i = 2; i < n; i++)
 	{
 		if (n % i == 0)
 		{
