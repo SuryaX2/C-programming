@@ -1,4 +1,5 @@
 /*
+    Floyd's triangle
     Enter The Number Of Rows : 4
     1 
     2 3 
