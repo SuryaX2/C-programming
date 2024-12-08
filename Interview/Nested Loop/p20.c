@@ -1,34 +1,17 @@
 /*
     Enter The Number Of Rows : 4
-    ********
-    ***  ***
-    **    **
-    *      *
     *      *
     **    **
     ***  ***
     ********
+    ***  ***
+    **    **
+    *      *
 */
 #include <stdio.h>
 void printPattern(int n)
 {
-    int sp = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= n - i + 1; j++)
-        {
-            printf("*");
-        }
-        for (int j = 1; j <= sp; j++)
-            printf(" ");
-        for (int j = 1; j <= n - i + 1; j++)
-        {
-            printf("*");
-        }
-        sp += 2;
-        printf("\n");
-    }
-    sp = (n - 1) * 2;
+    int sp = (n - 1) * 2;
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= i; j++)
@@ -42,6 +25,22 @@ void printPattern(int n)
             printf("*");
         }
         sp -= 2;
+        printf("\n");
+    }
+    sp = 2;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n - i; j++)
+        {
+            printf("*");
+        }
+        for (int j = 1; j <= sp; j++)
+            printf(" ");
+        for (int j = 1; j <= n - i; j++)
+        {
+            printf("*");
+        }
+        sp += 2;
         printf("\n");
     }
 }
