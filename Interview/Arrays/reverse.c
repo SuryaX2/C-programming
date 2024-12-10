@@ -2,9 +2,9 @@
 #include <stdio.h>
 void swap(int *a, int *b)
 {
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
+    *a = *a ^ *b;
+    *b = *a ^ *b;
+    *a = *a ^ *b;
 }
 int main()
 {
@@ -12,12 +12,16 @@ int main()
     printf("\nEnter Number of Elements : ");
     scanf("%d", &n);
     int a[n];
+    printf("\nEnter Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &a[i]);
     i = 0, j = n - 1;
     while (i < j)
     {
-        swap(&i, &j);
+        swap(&a[i], &a[j]);
         i++, j--;
     }
+    printf("\nReversed Array : ");
     for (int i = 0; i < n; i++)
         printf("%d ", a[i]);
 
