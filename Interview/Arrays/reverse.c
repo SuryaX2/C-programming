@@ -2,9 +2,9 @@
 #include <stdio.h>
 void swap(int *a, int *b)
 {
-    a = *a ^ *b;
-    b = *a ^ *b;
-    a = *a ^ *b;
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
 }
 int main()
 {
@@ -19,9 +19,7 @@ int main()
         i++, j--;
     }
     for (int i = 0; i < n; i++)
-    {
         printf("%d ", a[i]);
-    }
-    
+
     return 0;
 }
