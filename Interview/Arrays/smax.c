@@ -3,8 +3,7 @@ int secondLargest(int arr[], int n)
 {
     if (n < 2)
         return -1;
-    int max = INT_MIN, smax = INT_MIN;
-    int i;
+    int max = INT_MIN, smax = INT_MIN, i;
     for (i = 0; i < n; i++)
     {
         if (arr[i] > max)
