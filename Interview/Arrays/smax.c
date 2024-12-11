@@ -18,3 +18,15 @@ int secondLargest(int arr[], int n)
     }
     return smax;
 }
+int main()
+{
+    int i, j, n;
+    printf("\nEnter Number of Elements : ");
+    scanf("%d", &n);
+    int a[n];
+    printf("\nEnter Elements : ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &a[i]);    
+    printf("\nSecond Max Element In Array : %d ", secondLargest(a,n));
+    return 0;
+}
