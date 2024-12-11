@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <stdio.h>
 int secondLargest(int arr[], int n)
 {
     if (n < 2)
