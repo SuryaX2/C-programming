@@ -16,8 +16,7 @@ void receiver()
     scanf("%s", data);
     printf("\nData received: %s", data);
     crc();
-    for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++)
-        ;
+    for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++);
     if (i < N - 1)
         printf("\nError detected\n\n");
     else
