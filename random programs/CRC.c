@@ -52,6 +52,6 @@ int main()
     printf("\nCRC is : %s", check_value);
     strncpy(data + data_length, check_value, N - 1);
     printf("\nFinal data to be sent : %s", data);
-    receiver();
+    // receiver();
     return 0;
 }
