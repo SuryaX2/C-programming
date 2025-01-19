@@ -4,6 +4,7 @@
 
 char data[28], check_value[28], gen_poly[10];
 int data_length, i, j;
+void crc();
 
 void XOR()
 {
@@ -14,6 +15,7 @@ void receiver()
 {
     printf("\nEnter the received data: ");
     scanf("%s", data);
+    // data_length = strlen(data) - (N - 1); // add only if you are doing receiver side
     printf("\nData received: %s", data);
     crc();
     for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++);
@@ -51,6 +53,6 @@ int main()
     printf("\nCRC is : %s", check_value);
     strncpy(data + data_length, check_value, N - 1);
     printf("\nFinal data to be sent : %s", data);
-    // receiver();
+    receiver();
     return 0;
 }
