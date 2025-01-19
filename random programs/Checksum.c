@@ -1,114 +1,57 @@
 #include <stdio.h>
-#include <string.h>
-
-void calculateChecksum(char data[20], char checksum[20])
+int data[32][32] = {0};
+int k, n; // k = No. of sections, n = No. of bits in each section
+void decToBin(int dec, int *bin)
 {
-    int length = strlen(data);
-    char complement[20];
-    int carry = 0;
-
-    // Calculate 1's complement (flip bits)
-    for (int i = 0; i < length; i++)
+    for (int i = n - 1; i >= 0; i--)
     {
-        complement[i] = (data[i] == '0') ? '1' : '0';
+        bin[i] = dec % 2;
+        dec /= 2;
     }
-    complement[length] = '\0';
-
-    // Add carry if any (here, no addition needed for the complement itself)
-    strcpy(checksum, complement);
 }
-
-void sender()
+void generateChecksum()
 {
-    char data[20], checksum[20];
-
-    printf("\n--- Sender Side ---\n");
-    printf("Enter the binary data:\n");
-    scanf("%s", data);
-
-    // Calculate checksum
-    calculateChecksum(data, checksum);
-
-    printf("Data to be sent: %s\n", data);
-    printf("Checksum: %s\n", checksum);
-}
-
-void receiver()
-{
-    char data[20], checksum[20], receivedData[20];
-    char complement[20];
     int carry = 0;
-
-    printf("\n--- Receiver Side ---\n");
-    printf("Enter the received binary data:\n");
-    scanf("%s", data);
-    printf("Enter the received checksum:\n");
-    scanf("%s", checksum);
-
-    int length = strlen(data);
-
-    // Add data and checksum
-    for (int i = length - 1; i >= 0; i--)
+    for (int i = n - 1; i >= 0; i--) // sum up all the sections
     {
-        int bitSum = (data[i] - '0') + (checksum[i] - '0') + carry;
-        receivedData[i] = (bitSum % 2) + '0';
-        carry = bitSum / 2;
-    }
-
-    // Compute complement of the result
-    for (int i = 0; i < length; i++)
-    {
-        complement[i] = (receivedData[i] == '0') ? '1' : '0';
-    }
-    complement[length] = '\0';
-
-    printf("Complement of the result: %s\n", complement);
-
-    // Check if result is all zeros
-    int valid = 1;
-    for (int i = 0; i < length; i++)
-    {
-        if (complement[i] == '1')
+        int sum = carry;
+        for (int j = 0; j < k; j++)
         {
-            valid = 0;
-            break;
+            sum += data[j][i];
         }
+        data[k][i] = sum % 2;
+        carry = sum / 2;
     }
+    int carryBits[32] = {0};
+    decToBin(carry, carryBits); // convert carry to binary
 
-    if (valid)
+    carry = 0;
+    for (int i = n - 1; i >= 0; i--) // sum the carry bits with the sum
     {
-        printf("No error in transmission. Data is valid.\n");
+        int sum = data[k][i] + carryBits[i] + carry;
+        data[k][i] = sum % 2;
+        carry = sum / 2;
     }
-    else
-    {
-        printf("Error in transmission. Data is invalid.\n");
-    }
+    for (int i = 0; i < n; i++) // Take 1's complement
+        data[k][i] = (data[k][i] == 0) ? 1 : 0;
 }
 
 int main()
 {
-    int choice;
-    do
+    printf("\nEnter no of sections:");
+    scanf("%d", &k);
+    printf("\nEnter no of bits in each section:");
+    scanf("%d", &n);
+    for (int i = 0; i < k; i++)
     {
-        printf("\n--- Checksum Program ---\n");
-        printf("1. Sender\n2. Receiver\n3. Exit\nEnter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice)
+        printf("\nEnter section [%d]:", i + 1);
+        for (int j = 0; j < n; j++)
         {
-        case 1:
-            sender();
-            break;
-        case 2:
-            receiver();
-            break;
-        case 3:
-            printf("Exiting...\n");
-            break;
-        default:
-            printf("Invalid choice. Try again.\n");
+            scanf("%d", &data[i][j]);
         }
-    } while (choice != 3);
-
-    return 0;
+    }
+    generateChecksum();
+    printf("\nChecksum generated:");
+    for (int j = 0; j < n; j++)
+        printf("%d ", data[k][j]);
 }
