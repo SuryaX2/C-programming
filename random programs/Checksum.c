@@ -16,9 +16,7 @@ void generateChecksum()
     {
         int sum = carry;
         for (int j = 0; j < k; j++)
-        {
             sum += data[j][i];
-        }
         data[k][i] = sum % 2;
         carry = sum / 2;
     }

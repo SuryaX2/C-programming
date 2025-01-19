@@ -4,14 +4,14 @@ int k, n; // k = No. of sections, n = No. of bits in each section
 int verifyChecksum()
 {
     int carry = 0;
-    int finalSum[32] = {0}; // To store the sum of each bit position
+    int finalSum[32] = {0};          // To store the sum of each bit position
     for (int i = n - 1; i >= 0; i--) // Sum all the sections including the checksum
     {
-        int columnSum = carry;
+        int sum = carry;
         for (int j = 0; j <= k; j++) // Loop through all sections including checksum
-            columnSum += data[j][i];
-        finalSum[i] = columnSum % 2; // Store the result for this bit
-        carry = columnSum / 2;      // Carry over to the next higher bit
+            sum += data[j][i];
+        finalSum[i] = sum % 2; // Store the result for this bit
+        carry = sum / 2;       // Carry over to the next higher bit
     }
     while (carry > 0) // Handle leftover carry
     {
