@@ -1,25 +1,32 @@
 #include <iostream>
 using namespace std;
-class Factorial {
-   private:
-    int number;
-
+int x = 10;
+class A {
    public:
-    Factorial(int n) : number(n) {}
-    int calculate() {
-        if (number <= 1) return 1;
-        int result = 1;
-        for (int i = 2; i <= number; i++) {
-            result *= i;
-        }
-        return result;
-    }
+    static int value;
+    void display();
 };
+void A::display() {
+    cout << "display() is a member of class A" << endl;
+}
+namespace n1 {
+int x = 30;
+}
+int A::value = 40;
 int main() {
-    int n;
-    cout << "Enter Number : ";
-    cin >> n;
-    Factorial fact(n);
-    cout << "Factorial: " << fact.calculate() << endl;
+    // 1) Accessing the global variable x
+    int x = 20;
+    cout << "global x is : " << ::x << endl;
+    cout << "local x is : " << x << endl;
+
+    // 2) To define a function outside a class
+    A a;
+    a.display();
+
+    // 3) Accessing namespace value
+    cout << "The namespace value is of x : " << n1::x << endl;
+
+    // 4) Accessing static member of class
+    cout << "The static member of class A is : " << A::value << endl;
     return 0;
 }
