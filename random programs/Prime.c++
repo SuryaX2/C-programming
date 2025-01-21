@@ -1,18 +1,14 @@
 #include <iostream>
 using namespace std;
-class Prime
-{
-private:
+class Prime {
+   private:
     int n;
 
-public:
+   public:
     Prime(int n) : n(n) {}
-    void isPrime()
-    {
-        for (int i = 2; i <= n / 2; i++)
-        {
-            if (n % i == 0)
-            {
+    void isPrime() {
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
                 cout << "Not Prime" << endl;
                 return;
             }
@@ -20,8 +16,7 @@ public:
         cout << "Prime" << endl;
     }
 };
-int main()
-{
+int main() {
     int n;
     cout << "Enter a number: ";
     cin >> n;
