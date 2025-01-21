@@ -6,13 +6,11 @@ char data[28], check_value[28], gen_poly[10];
 int data_length, i, j;
 void crc();
 
-void XOR()
-{
+void XOR() {
     for (j = 1; j < N; j++)
         check_value[j] = ((check_value[j] == gen_poly[j]) ? '0' : '1');
 }
-void receiver()
-{
+void receiver() {
     printf("\nEnter the received data: ");
     scanf("%s", data);
     // data_length = strlen(data) - (N - 1); // add only if you are doing receiver side
@@ -25,12 +23,10 @@ void receiver()
         printf("\nNo error detected\nRemainder : %s\n", check_value);
 }
 
-void crc()
-{
+void crc() {
     for (i = 0; i < N; i++)
         check_value[i] = data[i];
-    do
-    {
+    do {
         if (check_value[0] == '1')
             XOR();
         for (j = 0; j < N - 1; j++)
@@ -39,8 +35,7 @@ void crc()
     } while (i <= data_length + N - 1);
 }
 
-int main()
-{
+int main() {
     printf("\nEnter data to be transmitted: ");
     scanf("%s", data);
     printf("\nEnter the Generating polynomial: ");

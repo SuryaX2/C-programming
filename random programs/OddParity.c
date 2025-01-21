@@ -1,17 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-int main()
-{
+int main() {
     int n;
     printf("\nEnter size of message: ");
     scanf("%d", &n);
-    char data[n + 2]; // +2 to accommodate parity bit and null terminator
+    char data[n + 2];  // +2 to accommodate parity bit and null terminator
     printf("\nEnter the message: ");
     scanf("%s", data);
     int count = 0;
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         if (data[i] == '1')
             count++;
     }
