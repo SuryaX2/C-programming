@@ -1,43 +1,42 @@
 #include <stdio.h>
-int main(){
-    float w[50], p[50], r[50], tValue, temp, cap, amount;
+void swap(double *a, double *b) {
+    double temp = *a;
+    *a = *b;
+    *b = temp;
+}
+int main() {
+    double w[50], p[50], r[50], tValue = 0.0, temp, cap, amount;
     int n, i, j;
-    printf("Enter the number of items :");
+    printf("Enter the number of items: ");
     scanf("%d", &n);
-    for (i = 0; i < n; i++){
-        printf("Enter Weight and p for item[%d] :\n", i);
-        scanf("%f %f", &w[i], &p[i]);
+    for (i = 0; i < n; i++) {
+        printf("Enter Weight and Profit for item[%d]:\n", i);
+        scanf("%lf %lf", &w[i], &p[i]);
     }
-    printf("Enter the cap of knapsack :\n");
-    scanf("%f", &cap);
-    for (i = 0; i < n; i++)
+    printf("Enter the capacity of knapsack:\n");
+    scanf("%lf", &cap);
+    for (i = 0; i < n; i++)  // Calculate profit-to-weight ratio
         r[i] = p[i] / w[i];
-    for (i = 0; i < n; i++)
-        for (j = i + 1; j < n; j++)
-            if (r[i] < r[j]){
-                temp = r[j];
-                r[j] = r[i];
-                r[i] = temp;
-
-                temp = w[j];
-                w[j] = w[i];
-                w[i] = temp;
-
-                temp = p[j];
-                p[j] = p[i];
-                p[i] = temp;
+    for (i = 0; i < n; i++) {  // Sort items based on profit-to-weight ratio
+        for (j = i + 1; j < n; j++) {
+            if (r[i] < r[j]) {
+                swap(&r[i], &r[j]);
+                swap(&w[i], &w[j]);
+                swap(&p[i], &p[j]);
             }
-    printf("Knapsack problems using Greedy Algorithm:\n");
-    for (i = 0; i < n; i++){
-        if (w[i] > cap)
-            break;
-        else{
-            tValue = tValue + p[i];
-            cap = cap - w[i];
         }
     }
-    if (i < n)
-        tValue = tValue + (r[i] * cap);
-    printf("\nThe maximum value is :%f\n", tValue);
+    printf("Knapsack problem using Greedy Algorithm:\n");
+    for (i = 0; i < n; i++) {  // Greedily add items to knapsack
+        if (w[i] > cap)
+            break;
+        else {
+            tValue += p[i];
+            cap -= w[i];
+        }
+    }
+    if (i < n)  // Add fractional part of the next item
+        tValue += (r[i] * cap);
+    printf("\nThe maximum value is: %lf\n", tValue);
     return 0;
 }
