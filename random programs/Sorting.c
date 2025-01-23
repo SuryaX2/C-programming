@@ -1,13 +1,9 @@
 #include <stdio.h>
-void Bubble(int *a, int n)
-{
+void Bubble(int *a, int n) {
     int i, j, temp;
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < n - i; j++)
-        {
-            if (a[j] > a[j + 1])
-            {
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n - i; j++) {
+            if (a[j] > a[j + 1]) {
                 temp = a[j];
                 a[j] = a[j + 1];
                 a[j + 1] = temp;
@@ -15,25 +11,20 @@ void Bubble(int *a, int n)
         }
     }
 }
-void Insertion(int *a, int n)
-{
+void Insertion(int *a, int n) {
     int i, j, temp;
-    for (i = 1; i < n; i++)
-    {
+    for (i = 1; i < n; i++) {
         temp = a[i];
         for (j = i - 1; j >= 0 && a[j] > temp; j--)
             a[j + 1] = a[j];
         a[j + 1] = temp;
     }
 }
-void Selection(int *a, int n)
-{
+void Selection(int *a, int n) {
     int i, j, min, temp;
-    for (i = 0; i < n - 1; i++)
-    {
+    for (i = 0; i < n - 1; i++) {
         min = i;
-        for (j = i + 1; j < n; j++)
-        {
+        for (j = i + 1; j < n; j++) {
             if (a[j] < a[min])
                 min = j;
         }
@@ -43,8 +34,7 @@ void Selection(int *a, int n)
     }
 }
 
-int main()
-{
+int main() {
     int i, n;
     printf("\nEnter Range : ");
     scanf("%d", &n);
