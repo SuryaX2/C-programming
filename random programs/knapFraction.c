@@ -5,7 +5,7 @@ void swap(double *a, double *b) {
     *b = temp;
 }
 int main() {
-    double w[50], p[50], r[50], tValue = 0.0, temp, cap, amount;
+    double w[50], p[50], r[50], tValue = 0.0, cap;
     int n, i, j;
     printf("Enter the number of items: ");
     scanf("%d", &n);
