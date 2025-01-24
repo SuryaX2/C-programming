@@ -52,8 +52,7 @@ int main() {
         {0, 3, 5},
         {1, 3, 15},
         {2, 3, 4}};
-    int n = 4;
-    int e = 5;
+    int n = 4, e = 5;
     kruskalAlgo(n, e, edges);
     return 0;
 }
