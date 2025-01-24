@@ -1,69 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
-#define MAX_NODES 100
-
-int find(int parent[], int i) {
-    if (parent[i] == -1)
-        return i;
-    return find(parent, parent[i]);
+int comparator(const void* p1, const void* p2) {
+    const int(*x)[3] = p1;
+    const int(*y)[3] = p2;
+    return (*x)[2] - (*y)[2];
 }
-
-void Union(int parent[], int x, int y) {
-    int xset = find(parent, x);
-    int yset = find(parent, y);
-    parent[xset] = yset;
-}
-
-int minKey(int key[], int mstSet[], int n) {
-    int min = INT_MAX, min_index;
-    for (int v = 0; v < n; v++) {
-        if (mstSet[v] == 0 && key[v] < min) {
-            min = key[v];
-            min_index = v;
-        }
-    }
-    return min_index;
-}
-
-void printMST(int parent[], int graph[MAX_NODES][MAX_NODES], int n) {
-    printf("Edge \tWeight\n");
-    for (int i = 1; i < n; i++)
-        printf("%d - %d \t%d \n", parent[i], i, graph[i][parent[i]]);
-}
-
-void kruskal(int graph[MAX_NODES][MAX_NODES], int n) {
-    int parent[n], key[n], mstSet[n];
+void makeSet(int parent[], int rank[], int n) {
     for (int i = 0; i < n; i++) {
-        key[i] = INT_MAX;
-        mstSet[i] = 0;
+        parent[i] = i;
+        rank[i] = 0;
     }
-    key[0] = 0;
-    parent[0] = -1;
-    for (int count = 0; count < n - 1; count++) {
-        int u = minKey(key, mstSet, n);
-        mstSet[u] = 1;
-        for (int v = 0; v < n; v++) {
-            if (graph[u][v] && mstSet[v] == 0 && graph[u][v] < key[v]) {
-                parent[v] = u;
-                key[v] = graph[u][v];
-            }
+}
+int findParent(int parent[], int component) {
+    if (parent[component] == component)
+        return component;
+    return parent[component] = findParent(parent, parent[component]);
+}
+void unionSet(int u, int v, int parent[], int rank[], int n) {
+    u = findParent(parent, u);
+    v = findParent(parent, v);
+    if (rank[u] < rank[v]) {
+        parent[u] = v;
+    } else if (rank[u] > rank[v]) {
+        parent[v] = u;
+    } else {
+        parent[v] = u;
+        rank[u]++;
+    }
+}
+void kruskalAlgo(int n, int edge[n][3]) {
+    qsort(edge, n, sizeof(edge[0]), comparator);
+    int parent[n], rank[n], minCost = 0;
+    makeSet(parent, rank, n);
+    printf("Following are the edges in the constructed MST\n");
+    for (int i = 0; i < n; i++) {
+        int v1 = findParent(parent, edge[i][0]);
+        int v2 = findParent(parent, edge[i][1]);
+        int wt = edge[i][2];
+        if (v1 != v2) {
+            unionSet(v1, v2, parent, rank, n);
+            minCost += wt;
+            printf("%d -- %d == %d\n", edge[i][0], edge[i][1], wt);
         }
     }
-    printMST(parent, graph, n);
+    printf("Minimum Cost Spanning Tree: %d\n", minCost);
 }
-
 int main() {
-    int n;
-    int graph[MAX_NODES][MAX_NODES];
-    printf("Enter the number of nodes: ");
-    scanf("%d", &n);
-    printf("Enter the adjacency matrix:\n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++)
-            scanf("%d", &graph[i][j]);
-    }
-    kruskal(graph, n);
+    int edge[5][3] = {
+        {0, 1, 10},
+        {0, 2, 6},
+        {0, 3, 5},
+        {1, 3, 15},
+        {2, 3, 4}};
+    kruskalAlgo(5, edge);
     return 0;
 }
-
