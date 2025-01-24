@@ -1,25 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 int comparator(const void* p1, const void* p2) {
     const int(*x)[3] = p1;
     const int(*y)[3] = p2;
     return (*x)[2] - (*y)[2];
 }
-
 void makeSet(int parent[], int rank[], int n) {
     for (int i = 0; i < n; i++) {
         parent[i] = i;
         rank[i] = 0;
     }
 }
-
 int findParent(int parent[], int component) {
     if (parent[component] == component)
         return component;
     return parent[component] = findParent(parent, parent[component]);
 }
-
 void unionSet(int u, int v, int parent[], int rank[], int n) {
     u = findParent(parent, u);
     v = findParent(parent, v);
@@ -32,7 +28,6 @@ void unionSet(int u, int v, int parent[], int rank[], int n) {
         rank[u]++;
     }
 }
-
 void kruskalAlgo(int n, int e, int edges[][3]) {
     qsort(edges, e, sizeof(edges[0]), comparator);
     int parent[n], rank[n], minCost = 0;
@@ -50,7 +45,6 @@ void kruskalAlgo(int n, int e, int edges[][3]) {
     }
     printf("Minimum Cost Spanning Tree: %d\n", minCost);
 }
-
 int main() {
     int edges[5][3] = {
         {0, 1, 10},
