@@ -21,7 +21,7 @@ void dijkstra(int graph[V][V], int src) {
     for (int i = 0; i < V; i++)
         dist[i] = INT_MAX, sptSet[i] = false;
     dist[src] = 0;
-    for (int count = 0; count < V - 1; count++) {
+    for (int i = 0; i < V - 1; i++) {
         int u = minDistance(dist, sptSet);
         sptSet[u] = true;
         for (int v = 0; v < V; v++)
