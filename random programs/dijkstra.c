@@ -1,69 +1,49 @@
 #include <limits.h>
+#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
-#define MAX_NODES 100
-int minDistance(int dist[], int sptSet[], int n) {
+#define V 9
+
+int minDistance(int dist[], bool sptSet[]) {
     int min = INT_MAX, min_index;
-    for (int v = 0; v < n; v++) {
-        if (sptSet[v] == 0 && dist[v] <= min) {
-            min = dist[v];
-            min_index = v;
-        }
-    }
+    for (int v = 0; v < V; v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
     return min_index;
 }
-
-void printPath(int parent[], int j) {
-    if (parent[j] == -1)
-        return;
-    printPath(parent, parent[j]);
-    printf("%d ", j);
+void printSolution(int dist[]) {
+    printf("Vertex \t\t Distance from Source\n");
+    for (int i = 0; i < V; i++)
+        printf("%d \t\t\t\t %d\n", i, dist[i]);
 }
-
-void printSolution(int dist[], int parent[], int n, int src, int dest) {
-    printf("Shortest path from %d to %d is: %d ", src, dest, src);
-    printPath(parent, dest);
-    printf("\nShortest distance: %d\n", dist[dest]);
-}
-
-void dijkstra(int graph[MAX_NODES][MAX_NODES], int n, int src, int dest) {
-    int dist[n], sptSet[n], parent[n];
-    for (int i = 0; i < n; i++) {
-        dist[i] = INT_MAX;
-        sptSet[i] = 0;
-        parent[i] = -1;
-    }
+void dijkstra(int graph[V][V], int src) {
+    int dist[V];
+    bool sptSet[V];
+    for (int i = 0; i < V; i++)
+        dist[i] = INT_MAX, sptSet[i] = false;
     dist[src] = 0;
-    for (int count = 0; count < n - 1; count++) {
-        int u = minDistance(dist, sptSet, n);
-        sptSet[u] = 1;
-        for (int v = 0; v < n; v++) {
-            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
+    for (int count = 0; count < V - 1; count++) {
+        int u = minDistance(dist, sptSet);
+        sptSet[u] = true;
+        for (int v = 0; v < V; v++)
+            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v])
                 dist[v] = dist[u] + graph[u][v];
-                parent[v] = u;
-            }
-        }
     }
-    printSolution(dist, parent, n, src, dest);
+    printSolution(dist);
 }
 
 int main() {
-    int n, src, dest;
-    int graph[MAX_NODES][MAX_NODES];
-    printf("Enter the number of nodes: ");
-    scanf("%d", &n);
-    printf("Enter the adjacency matrix:\n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++)
-            scanf("%d", &graph[i][j]);
-    }
-    printf("Enter the source node: ");
-    scanf("%d", &src);
-    printf("Enter the destination node: ");
-    scanf("%d", &dest);
-    dijkstra(graph, n, src, dest);
+    int graph[V][V] = {
+        {0, 4, 0, 0, 0, 0, 0, 8, 0},
+        {4, 0, 8, 0, 0, 0, 0, 11, 0},
+        {0, 8, 0, 7, 0, 4, 0, 0, 2},
+        {0, 0, 7, 0, 9, 14, 0, 0, 0},
+        {0, 0, 0, 9, 0, 10, 0, 0, 0},
+        {0, 0, 4, 14, 10, 0, 2, 0, 0},
+        {0, 0, 0, 0, 0, 2, 0, 1, 6},
+        {8, 11, 0, 0, 0, 0, 1, 0, 7},
+        {0, 0, 2, 0, 0, 0, 6, 7, 0}
+    };
+
+    dijkstra(graph, 0);
     return 0;
 }
-
-// Time Complexity: O(n^2)
-// Space Complexity: O(n^2)
