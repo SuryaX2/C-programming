@@ -23,6 +23,6 @@ int main() {
     printf("Enter two numbers: ");
     scanf("%d %d", &a, &b);
     printf("LCM of %d and %d is %d\n", a, b, lcm(a, b));
-    printf("LCM of %d and %d is %d\n", a, b, LCM(a, b));
+    printf("LCM of %d and %d is %d\n", a, b, LCM(a, b)); 
     return 0;
 }
