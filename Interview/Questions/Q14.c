@@ -6,3 +6,10 @@ int sumOfNaturalNumbers(int n) {
         sum += i;
     return sum;
 }
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    printf("Sum of first %d natural numbers is %d\n", n, sumOfNaturalNumbers(n));
+    return 0;
+}
