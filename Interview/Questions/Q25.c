@@ -1,4 +1,4 @@
-// 25.WAP to identify Friendly pair or not (amicable or not)
+// 25.WAP to identify Friendly pair or not (amicable or not)    
 #include <stdio.h>
 int sumOfDivisors(int n) {
     int sum = 0;
