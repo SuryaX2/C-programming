@@ -23,7 +23,11 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
-    int count = removeDuplicate(arr, n);
-    printf("The number of unique elements in the array is: %d\n", count);
+    int newSize = removeDuplicate(arr, n);
+
+    printf("Array after removing duplicates: ");
+    for (int i = 0; i < newSize; i++) {
+        printf("%d ", arr[i]);
+    }
     return 0;
 }
