@@ -1,9 +1,8 @@
 // 62.WAP to Count distinct elements of an array
 #include <stdio.h>
-#include <stdlib.h>
-int compare(const void *a, const void *b) {
-    return (*(int *)a - *(int *)b);
-}
+
+#include "./compare.c"
+
 int countDistinct(int arr[], int n) {
     qsort(arr, n, sizeof(int), compare);
     int count = 1;

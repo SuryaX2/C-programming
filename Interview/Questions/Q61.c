@@ -1,6 +1,8 @@
 // 61.WAP to find out Longest palindrome in an array
 #include <stdio.h>
-#include <stdlib.h>
+
+#include "./compare.c"
+
 int isPalindrome(int n) {
     int rev = 0, original = n;
     while (n != 0) {
@@ -9,9 +11,7 @@ int isPalindrome(int n) {
     }
     return rev == original;
 }
-int compare(const void *a, const void *b) {
-    return (*(int *)b - *(int *)a);
-}
+
 int largestPalindrome(int a[], int n) {
     qsort(a, n, sizeof(int), compare);  // Sort the array in descending order
     for (int i = 0; i < n; i++) {
