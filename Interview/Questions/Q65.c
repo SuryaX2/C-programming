@@ -4,7 +4,7 @@
 #include "./compare.c"
 
 int removeDuplicate(int arr[], int n) {
-    qsort(arr, n, sizeof(int), compare);
+    qsort(arr, n, sizeof(int), compareASC);
     int count = 1;
     for (int i = 1; i < n; i++) {
         if (arr[i] != arr[i - 1]) {

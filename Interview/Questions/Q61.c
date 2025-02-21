@@ -13,7 +13,7 @@ int isPalindrome(int n) {
 }
 
 int largestPalindrome(int a[], int n) {
-    qsort(a, n, sizeof(int), compare);  // Sort the array in descending order
+    qsort(a, n, sizeof(int), compareDESC);  // Sort the array in descending order
     for (int i = 0; i < n; i++) {
         if (isPalindrome(a[i]))
             return a[i];

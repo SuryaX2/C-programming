@@ -4,7 +4,7 @@
 #include "./compare.c"
 
 void countRepeating(int arr[], int n) {
-    qsort(arr, n, sizeof(int), compare);
+    qsort(arr, n, sizeof(int), compareASC);
     int count = 0;
     for (int i = 0; i < n - 1; i++) {
         if (arr[i] == arr[i + 1]) {
