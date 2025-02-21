@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "./ScanPrint.c"
 #include "./compare.c"
 
 int minScalarProduct(int a[], int b[], int n) {
@@ -9,9 +10,7 @@ int minScalarProduct(int a[], int b[], int n) {
     qsort(a, n, sizeof(int), compareASC);
     qsort(b, n, sizeof(int), compareDESC);
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            product += a[i] * b[j];
-        }
+        product += a[i] * b[i];
     }
     return product;
 }
@@ -22,13 +21,9 @@ int main() {
     scanf("%d", &n);
     int a[n], b[n];
     printf("Enter the elements of the first vector: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
-    }
+    scanArray(a, n);
     printf("Enter the elements of the second vector: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &b[i]);
-    }
+    scanArray(b, n);
     int minProduct = minScalarProduct(a, b, n);
     printf("The minimum scalar product of the two vectors is: %d\n", minProduct);
     return 0;
