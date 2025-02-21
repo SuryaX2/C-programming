@@ -1,6 +1,7 @@
 // 64.WAP to print and count Repeating elements in an array
 #include <stdio.h>
 
+#include "./ScanPrint.c"
 #include "./compare.c"
 
 void countRepeating(int arr[], int n) {
@@ -24,9 +25,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     countRepeating(arr, n);
     return 0;
 }

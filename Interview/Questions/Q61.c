@@ -1,6 +1,7 @@
 // 61.WAP to find out Longest palindrome in an array
 #include <stdio.h>
 
+#include "./ScanPrint.c"
 #include "./compare.c"
 
 int isPalindrome(int n) {
@@ -26,9 +27,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     int result = largestPalindrome(arr, n);
     if (result == -1) {
         printf("No palindrome found in the array.\n");

@@ -1,6 +1,7 @@
 // 62.WAP to Count distinct elements of an array
 #include <stdio.h>
 
+#include "./ScanPrint.c"
 #include "./compare.c"
 
 int countDistinct(int arr[], int n) {
@@ -19,9 +20,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     int count = countDistinct(arr, n);
     printf("The number of distinct elements in the array is: %d\n", count);
     return 0;

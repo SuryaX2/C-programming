@@ -1,5 +1,8 @@
 // 60.	WAP to Reversing an array
 #include <stdio.h>
+
+#include "./ScanPrint.c"
+
 void swap(int* a, int* b) {
     int temp = *a;
     *a = *b;
@@ -18,13 +21,9 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     reverseArray(arr, n);
     printf("The reversed array is: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
+    printArray(arr, n);
     return 0;
 }

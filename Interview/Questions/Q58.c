@@ -1,6 +1,9 @@
 // 58.WAP to identify Second smallest element in an array
 #include <limits.h>
 #include <stdio.h>
+
+#include "./ScanPrint.c"
+
 int secondSmallest(int arr[], int n) {
     if (n < 2) {
         return -1;
@@ -22,9 +25,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     int sMin = secondSmallest(arr, n);
     printf("The second smallest element in the array is %d\n", sMin);
     return 0;

@@ -1,6 +1,7 @@
 // 65.WAP to Remove duplicate elements in an array
 #include <stdio.h>
 
+#include "./ScanPrint.c"
 #include "./compare.c"
 
 int removeDuplicate(int arr[], int n) {
@@ -20,14 +21,9 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     int newSize = removeDuplicate(arr, n);
-
     printf("Array after removing duplicates: ");
-    for (int i = 0; i < newSize; i++) {
-        printf("%d ", arr[i]);
-    }
+    printArray(arr, newSize);
     return 0;
 }

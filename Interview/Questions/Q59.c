@@ -1,5 +1,8 @@
 // 59.WAP to Sorting the elements of an array
 #include <stdio.h>
+
+#include "./ScanPrint.c"
+
 void swap(int* a, int* b) {
     *a = *a ^ *b;
     *b = *a ^ *b;
@@ -20,13 +23,9 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     sort(arr, n);
     printf("The sorted array is: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
+    printArray(arr, n);
     return 0;
 }

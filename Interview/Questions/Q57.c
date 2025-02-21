@@ -1,5 +1,8 @@
 // 57.WAP to find out Sum of positive square elements in an array
 #include <stdio.h>
+
+#include "./ScanPrint.c"
+
 int sumOfPositiveSquare(int arr[], int n) {
     int sum = 0;
     for (int i = 0; i < n; i++) {
@@ -15,9 +18,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     int sum = sumOfPositiveSquare(arr, n);
     printf("The sum of positive square elements in the array is %d\n", sum);
     return 0;

@@ -1,5 +1,8 @@
 // 54.WAP to find out Smallest and largest element in an array
 #include <stdio.h>
+
+#include "./ScanPrint.c"
+
 int min(int arr[], int n) {
     int min = arr[0];
     for (int i = 1; i < n; i++) {
@@ -24,9 +27,7 @@ int main() {
     scanf("%d", &n);
     int arr[n];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    scanArray(arr, n);
     printf("The smallest element in the array is %d\n", min(arr, n));
     printf("The largest element in the array is %d\n", max(arr, n));
     return 0;
