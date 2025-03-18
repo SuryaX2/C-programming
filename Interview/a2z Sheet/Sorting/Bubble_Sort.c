@@ -7,9 +7,29 @@
     Repeat the process for the remaining elements
  * Time Complexity: O(n^2)
  * Space Complexity: O(1)
- * Best Case, Average Case, Worst Case: O(n^2)
+ * Best Case : O(n)
+ * Average Case, Worst Case : O(n^2)
  */
 
 void bubbleSort(int a[], int n) {
-    
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                swap(&a[j], &a[j + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    int a[n];
+    printf("Enter elements: ");
+    scanArray(a, n);
+    bubbleSort(a, n);
+    printf("Sorted array: ");
+    printArray(a, n);
+    return 0;
 }
