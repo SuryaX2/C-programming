@@ -21,6 +21,20 @@ void bubbleSort(int a[], int n) {
     }
 }
 
+// Optimized Bubble Sort
+void optimizedBubbleSort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int isSwapped = 0;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                swap(&a[j], &a[j + 1]);
+                isSwapped = 1;
+            }
+        }
+        if (!isSwapped) break;
+    }
+}
+
 int main() {
     int n;
     printf("Enter number of elements: ");
@@ -28,7 +42,8 @@ int main() {
     int a[n];
     printf("Enter elements: ");
     scanArray(a, n);
-    bubbleSort(a, n);
+    bubbleSort(a, n); // Bubble Sort using normal way
+    optimizedBubbleSort(a, n); // Bubble Sort using optimized way
     printf("Sorted array: ");
     printArray(a, n);
     return 0;
