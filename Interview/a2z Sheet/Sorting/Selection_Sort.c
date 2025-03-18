@@ -1,6 +1,7 @@
 #include "./utility.c"
 /**
  * Selection Sort
+ * Algorithm:
     Select the minimum element and swap it with the first element
     Repeat the process for the remaining elements
  * Time Complexity: O(n^2)
