@@ -9,7 +9,7 @@
  * Space Complexity: O(1)
  * Best Case : O(n)
  * Average Case, Worst Case : O(n^2)
- */
+*/
 
 void bubbleSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {

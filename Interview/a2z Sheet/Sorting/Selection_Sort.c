@@ -8,7 +8,7 @@
  * Time Complexity: O(n^2)
  * Space Complexity: O(1)
  * Best Case, Average Case, Worst Case: O(n^2)
- */
+*/
 
 void selectionSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
