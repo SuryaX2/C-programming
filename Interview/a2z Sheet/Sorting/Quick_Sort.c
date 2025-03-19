@@ -11,13 +11,13 @@
 */
 
 int partition(int* a, int low, int high) {
-    int pivot = a[low], i = low, j = high;
+    int pivot = a[low], i = low + 1, j = high;
     do {
         while (a[i] <= pivot) i++;
         while (a[j] > pivot) j--;
-        if (i < j) swap(&a[i], &a[j]);
+        if (i < j) swapUsingTemp(&a[i], &a[j]);
     } while (i < j);
-    swap(&a[low], &a[j]);
+    swapUsingTemp(&a[low], &a[j]);
     return j;
 }
 
