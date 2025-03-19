@@ -29,3 +29,26 @@ void merge(int* a, int low, int mid, int high) {
         a[i] = b[i];
     }
 }
+
+void mergeSort(int* a, int low, int high) {
+    if (low < high) {
+        int mid = low + (high - low) / 2;
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+        merge(a, low, mid, high);
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    int a[n];
+    printf("Enter the elements: ");
+    scanArray(a, n);
+    mergeSort(a, 0, n - 1);
+    printf("Sorted array: ");
+    printArray(a, n);
+    printf("\n");
+    return 0;
+}
