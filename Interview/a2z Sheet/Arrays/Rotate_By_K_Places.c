@@ -22,7 +22,7 @@ int main() {
     scanArray(a, n);
     printf("\nEnter K : ");
     scanf("%d", &k);
-    rotateByKPlaces(a, n, k);
+    rotateByKPlaces(a, n, k); // Rotate By K Places to the Left
     printArray(a, n);
     return 0;
 }
