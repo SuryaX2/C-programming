@@ -14,6 +14,11 @@ void swapUsingTemp(int *a, int *b) {
     *b = temp;
 }
 
+// Utility function to find the maximum of two integers
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
 // Utility function to print an array
 void printArray(int arr[], int size) {
     for (int i = 0; i < size; i++) {
