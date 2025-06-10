@@ -15,7 +15,7 @@ int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 int lcm(int a, int b) {
-    return (a * b) / gcd(a, b); // lcm using gcd formula
+    return (a * b) / gcd(a, b);  // lcm using gcd formula
 }
 
 int main() {
@@ -23,6 +23,6 @@ int main() {
     printf("Enter two numbers: ");
     scanf("%d %d", &a, &b);
     printf("LCM of %d and %d is %d\n", a, b, lcm(a, b));
-    printf("LCM of %d and %d is %d\n", a, b, LCM(a, b)); 
+    printf("LCM of %d and %d is %d\n", a, b, LCM(a, b));
     return 0;
 }
